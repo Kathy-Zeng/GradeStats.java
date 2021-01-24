@@ -61,12 +61,13 @@ public class GradeStats
 	public int gScore()
 	{
 		int numStudent = 0; 
-		for(int i = 0; i < score.length; i++)
+		for(int i = 0; i < score[i]; i++)
+		{	
 			if(score[i] < 75)
 				numStudent += 1;
-			return numStudent;
+		}
+		return numStudent;
 	}
-	
 	// Compare values to each other until it finds a biggest score number. 
 	public int max()
 	{
@@ -84,14 +85,14 @@ public class GradeStats
 	// Compare values to each other until it finds a smallest score number. 
 	public int minNum()
 	{
-		int minimum = -1;  
-        	for(int j = 0; j < score.length; j++)   
+		int minimum = 0;  
+        	for(int j = 0; j > score.length; j++)   
         	{  
-             	      if(score[j] < minimum)   
-            	      {  
-                           minimum = score[j];
-           	      }    
-       	        }  
+               		if(score[j] < minimum)   
+             		{  
+                 		minimum = score[j];
+             		}    
+        	}  
         	return minimum;  
 	}
 	
@@ -140,31 +141,36 @@ public class GradeStats
 	public void computeScores(int numStudentBelow75, int maxNum, int min, double
 	avg, double med)
 	{
-		System.out.println("\n");
+		System.out.println();
 		System.out.print("Here is the data you entered: ");
 		int i;
-		for(i = 0; i < score.length; i++)
+		for(i = 0; i < score[i]; i++)
 		{
 			if(numStudentBelow75 < 10)
-				System.out.printf("%n%19s", "Student %d's score: %4d", i+1, score[i]);
+				System.out.printf("\n%19s %2d", "Student %d's score:", score[i],
+				 numStudentBelow75);
 			else if(numStudentBelow75 >= 10)
-				System.out.printf("%n%20s", "Student %d's score: %4d", i+1, score[i]);
+				System.out.printf("\n%20s %2d", "Student %d's score:", score[i], 
+				 numStudentBelow75);
 		}
-		System.out.printf("There were %d students who scored below 75%% = %4d", 
-			numStudentBelow75, score.length);
-		for(int j = 0; j < score.length - 1; j++)
+		if(numStudentBelow75 != 0)
+			System.out.printf("\n\nThere were %d students who scored below 75%%: ", 
+				numStudentBelow75);
+		for(int j = 0; j < score[j]; j++)
 		{
-			if(score[j] < 75)
-				System.out.printf("Student %d,", j+1);
+			if(score[j] < 75 && numStudentBelow75 != 1)
+				System.out.printf("student %d, ", j+1);
 		}
-		if(score[score.length - 1] < 75) 
-			System.out.printf("Student %d.", score.length); 
-		System.out.println("\n");
-		System.out.printf("%n%17s: %4d", "Number of scores ", score.length);
-		System.out.printf("%n%17s: %4d", "Minimum ", min);
-		System.out.printf("%n%17s: %4d", "Maximum ", maxNum);
-		System.out.printf("%n%17s: %4.1f", "Average ", avg);
-		System.out.printf("%n%17s: %4.1f", "Median", med);
+	        if(numStudentBelow75 == 0)
+			System.out.println("\n\nThere is no student who scores below 75%.");
+	        if(score[score.length - 1] < 75 && numStudentBelow75 >= 1) 
+			System.out.printf("Student %d.", j); 
+		System.out.println();
+		System.out.printf("\n%-17s %2d", "Number of scores:", score[i]);
+		System.out.printf("\n%-17s %2d", "Minimum:", min);
+		System.out.printf("\n%-17s %3d", "Maximum:", maxNum);
+		System.out.printf("\n%-17s %4.1f", "Average:", avg);
+		System.out.printf("\n%-17s %4.1f", "Median:", med);
 		System.out.println("\n\n\n");
 	}
 }
